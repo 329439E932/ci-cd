@@ -20,12 +20,11 @@ jobs:
     - name: Run tests
       run: npm run test:unit
 
-    # 4. Construcción del proyecto
     - name: Build project
       run: npm run build
 
-    # 5. Despliega en GitHub Pages
     - name: Deploy to GitHub Pages
+      if: ${{ success() }}  # Asegura que solo se ejecuta si los pasos anteriores son exitosos
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
